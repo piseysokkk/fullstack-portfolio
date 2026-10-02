@@ -13,7 +13,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 @Module({
   imports: [
     ThrottlerModule.forRoot([{ ttl: 60_000, limit: 3 }]),
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env', }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
@@ -24,7 +24,10 @@ import { ThrottlerModule } from '@nestjs/throttler';
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: true, // dev only — we'll switch to migrations before deploying
+        synchronize: false,
+        uuidExtension: 'pgcrypto',
+        migrations: [__dirname + '/migrations/*{.ts,.js}'],
+        migrationsRun: true, // applies pending migrations on startup
       }),
     }),
     ProjectsModule,
