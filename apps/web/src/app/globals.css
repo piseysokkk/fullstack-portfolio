@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+/* Colors (light mode) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #fff8f1;          /* warm cream */
+  --surface: #ffffff;
+  --ink: #3d2c3e;         /* soft plum for text */
+  --muted: #7a6a7b;
+  --peach: #ffc4b2;
+  --lavender: #d9c8ff;
+  --mint: #bdeedd;
+  --butter: #ffe8a8;
+  --accent: #ff9fb2;      /* playful pink for buttons */
+  --on-pastel: #3d2c3e;   /* text on pastel backgrounds, always dark */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Cozy dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #1f1724;
+    --surface: #2a2030;
+    --ink: #f6ecf2;
+    --muted: #bfaebf;
   }
 }
 
+/* Make the variables available as Tailwind classes, e.g. bg-peach, text-ink */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-peach: var(--peach);
+  --color-lavender: var(--lavender);
+  --color-mint: var(--mint);
+  --color-butter: var(--butter);
+  --color-accent: var(--accent);
+  --color-on-pastel: var(--on-pastel);
+
+  --font-display: var(--font-fredoka);
+  --font-body: var(--font-nunito);
+
+  --shadow-soft: 0 10px 30px -12px rgb(61 44 62 / 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* so the sticky navbar doesn't cover section titles */
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Floating background blobs */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(48px);
+  opacity: 0.6;
+  animation: float 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12px, -18px) scale(1.05); }
+}
+
+/* Respect visitors who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob { animation: none; }
 }
