@@ -42,3 +42,5 @@ export type ContactMessage = {
   isRead: boolean;
   createdAt: string;
 };
+
+export const skillCategories: SkillCategory[] = ['frontend', 'mobile', 'backend', 'tools'];

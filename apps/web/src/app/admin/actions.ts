@@ -111,3 +111,107 @@ export async function deleteProject(id: string) {
   await adminFetch(`/projects/${id}`, { method: 'DELETE' });
   revalidatePath('/', 'layout');
 }
+
+// ---------- Form helpers ----------
+
+const formText = (fd: FormData, key: string) => String(fd.get(key) ?? '').trim();
+const formOptional = (fd: FormData, key: string) => formText(fd, key) || null;
+const formList = (fd: FormData, key: string) =>
+  formText(fd, key)
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+// ---------- Skills ----------
+
+function skillFromForm(fd: FormData) {
+  return {
+    name: formText(fd, 'name'),
+    category: formText(fd, 'category'),
+    icon: formOptional(fd, 'icon'),
+    sortOrder: Number(formText(fd, 'sortOrder') || 0),
+  };
+}
+
+export async function createSkill(formData: FormData): Promise<FormState> {
+  try {
+    await adminFetch('/skills', { method: 'POST', body: skillFromForm(formData) });
+  } catch (err) {
+    if (err instanceof ApiError) return { error: err.message };
+    throw err;
+  }
+  revalidatePath('/', 'layout');
+  return {}; // stay on the page; the form clears itself
+}
+
+export async function updateSkill(id: string, formData: FormData): Promise<FormState> {
+  try {
+    await adminFetch(`/skills/${id}`, { method: 'PATCH', body: skillFromForm(formData) });
+  } catch (err) {
+    if (err instanceof ApiError) return { error: err.message };
+    throw err;
+  }
+  revalidatePath('/', 'layout');
+  redirect('/admin/skills');
+}
+
+export async function deleteSkill(id: string) {
+  await adminFetch(`/skills/${id}`, { method: 'DELETE' });
+  revalidatePath('/', 'layout');
+}
+
+// ---------- Experience ----------
+
+function experienceFromForm(fd: FormData) {
+  return {
+    role: formText(fd, 'role'),
+    company: formText(fd, 'company'),
+    location: formOptional(fd, 'location'),
+    startDate: formText(fd, 'startDate'),
+    endDate: formOptional(fd, 'endDate'), // empty = "Present"
+    description: formText(fd, 'description'),
+    techStack: formList(fd, 'techStack'),
+  };
+}
+
+function checkDates(data: { startDate: string; endDate: string | null }): string | undefined {
+  // "YYYY-MM-DD" strings sort correctly as plain text
+  if (data.endDate && data.endDate < data.startDate) {
+    return 'End date must be after the start date.';
+  }
+}
+
+export async function createExperience(formData: FormData): Promise<FormState> {
+  const data = experienceFromForm(formData);
+  const dateError = checkDates(data);
+  if (dateError) return { error: dateError };
+
+  try {
+    await adminFetch('/experience', { method: 'POST', body: data });
+  } catch (err) {
+    if (err instanceof ApiError) return { error: err.message };
+    throw err;
+  }
+  revalidatePath('/', 'layout');
+  redirect('/admin/experience');
+}
+
+export async function updateExperience(id: string, formData: FormData): Promise<FormState> {
+  const data = experienceFromForm(formData);
+  const dateError = checkDates(data);
+  if (dateError) return { error: dateError };
+
+  try {
+    await adminFetch(`/experience/${id}`, { method: 'PATCH', body: data });
+  } catch (err) {
+    if (err instanceof ApiError) return { error: err.message };
+    throw err;
+  }
+  revalidatePath('/', 'layout');
+  redirect('/admin/experience');
+}
+
+export async function deleteExperience(id: string) {
+  await adminFetch(`/experience/${id}`, { method: 'DELETE' });
+  revalidatePath('/', 'layout');
+}

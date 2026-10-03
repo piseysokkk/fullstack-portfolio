@@ -13,9 +13,9 @@ export default async function DashboardPage() {
   const unread = messages.filter((m) => !m.isRead).length;
 
   const stats = [
-    { label: 'Projects', value: projects.length, emoji: '🎈', color: 'bg-peach' },
-    { label: 'Skills', value: skills.length, emoji: '🧁', color: 'bg-lavender' },
-    { label: 'Experience', value: experience.length, emoji: '🚀', color: 'bg-mint' },
+    { label: 'Projects', value: projects.length, emoji: '🎈', color: 'bg-peach', href: '/admin/projects' },
+    { label: 'Skills', value: skills.length, emoji: '🧁', color: 'bg-lavender', href: '/admin/skills' },
+    { label: 'Experience', value: experience.length, emoji: '🚀', color: 'bg-mint', href: '/admin/experience' },
     { label: 'Unread messages', value: unread, emoji: '💌', color: 'bg-butter', href: '/admin/messages' },
   ];
 
