@@ -34,3 +34,11 @@ export type Experience = {
   description: string;
   techStack: string[];
 };
+export type ContactMessage = {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+};
