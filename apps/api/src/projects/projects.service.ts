@@ -34,6 +34,13 @@ export class ProjectsService {
   }
 
   async update(id: string, dto: UpdateProjectDto) {
+    if (dto.slug) {
+      const existing = await this.repo.findOneBy({ slug: dto.slug });
+      if (existing && existing.id !== id) {
+        throw new ConflictException('Slug already in use');
+      }
+    }
+
     const project = await this.repo.preload({ id, ...dto });
     if (!project) throw new NotFoundException('Project not found');
     return this.repo.save(project);

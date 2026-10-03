@@ -9,6 +9,15 @@ type Options = {
   body?: unknown;
 };
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(status: number, message: string) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
 export async function adminFetch<T>(path: string, options: Options = {}): Promise<T> {
   const token = (await cookies()).get(TOKEN_COOKIE)?.value;
   if (!token) redirect('/admin/login');
@@ -24,6 +33,13 @@ export async function adminFetch<T>(path: string, options: Options = {}): Promis
   });
 
   if (res.status === 401) redirect('/admin/login'); // token expired or invalid
-  if (!res.ok) throw new Error(`Admin request ${path} failed: ${res.status}`);
+    if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    // NestJS sends validation errors as an array of messages
+    const message = Array.isArray(body?.message)
+      ? body.message.join(', ')
+      : body?.message ?? `Request failed (${res.status})`;
+    throw new ApiError(res.status, message);
+  }
   return res.json();
 }
