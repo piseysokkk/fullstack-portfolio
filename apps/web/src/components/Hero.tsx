@@ -10,7 +10,7 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <p className="inline-block rounded-full bg-butter px-4 py-1 text-sm font-bold text-on-pastel">
-          Hi there 👋 I&apos;m Pisey
+          Hi there, I&apos;m Pisey
         </p>
 
         <h1 className="font-display mt-6 text-4xl leading-tight font-semibold sm:text-6xl">
@@ -29,7 +29,7 @@ export function Hero() {
             href="/#projects"
             className="rounded-full bg-accent px-7 py-3 font-bold text-on-pastel shadow-soft transition hover:-translate-y-0.5"
           >
-            See my work ✨
+            See my work
           </Link>
           <Link
             href="/#contact"

@@ -10,7 +10,7 @@ export default async function AdminExperiencePage() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-display text-3xl font-semibold">Experience 🚀</h1>
+        <h1 className="font-display text-3xl font-semibold">Experience</h1>
         <Link
           href="/admin/experience/new"
           className="rounded-full bg-accent px-6 py-3 font-bold text-on-pastel shadow-soft transition hover:-translate-y-0.5"

@@ -16,7 +16,7 @@ function formatRange(start: string, end: string | null) {
 export function ExperienceTimeline({ experience }: { experience: Experience[] }) {
   return (
     <section id="experience" className="px-6 py-20">
-      <SectionHeading emoji="🚀" title="Where I've worked" />
+      <SectionHeading title="Where I've worked" />
 
       {experience.length === 0 ? (
         <p className="text-center text-muted">Coming soon!</p>

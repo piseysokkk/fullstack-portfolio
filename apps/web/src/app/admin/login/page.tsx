@@ -15,8 +15,7 @@ export default function LoginPage() {
     <main className="flex min-h-screen items-center justify-center px-6">
       <form action={formAction} className="w-full max-w-sm space-y-5 rounded-[2rem] bg-surface p-8 shadow-soft">
         <div className="text-center">
-          <p className="text-4xl" aria-hidden>🔐</p>
-          <h1 className="font-display mt-2 text-3xl font-semibold">Admin login</h1>
+          <h1 className="font-display text-3xl font-semibold">Admin login</h1>
         </div>
 
         <div>

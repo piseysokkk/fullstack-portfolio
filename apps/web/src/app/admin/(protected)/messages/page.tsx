@@ -9,7 +9,7 @@ export default async function MessagesPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">Messages 💌</h1>
+      <h1 className="font-display text-3xl font-semibold">Messages</h1>
 
       {messages.length === 0 ? (
         <p className="mt-6 text-muted">No messages yet. They&apos;ll show up here!</p>

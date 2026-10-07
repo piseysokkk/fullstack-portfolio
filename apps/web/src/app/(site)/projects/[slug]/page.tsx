@@ -48,7 +48,7 @@ export default async function ProjectPage({ params }: Props) {
               rel="noopener noreferrer"
               className="rounded-full bg-accent px-6 py-3 font-bold text-on-pastel shadow-soft transition hover:-translate-y-0.5"
             >
-              Live demo ✨
+              Live demo
             </a>
           )}
           {project.githubUrl && (

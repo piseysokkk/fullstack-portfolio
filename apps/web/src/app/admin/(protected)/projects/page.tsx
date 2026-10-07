@@ -10,7 +10,7 @@ export default async function AdminProjectsPage() {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-display text-3xl font-semibold">Projects 🎈</h1>
+        <h1 className="font-display text-3xl font-semibold">Projects</h1>
         <Link
           href="/admin/projects/new"
           className="rounded-full bg-accent px-6 py-3 font-bold text-on-pastel shadow-soft transition hover:-translate-y-0.5"
@@ -31,7 +31,11 @@ export default async function AdminProjectsPage() {
               <div>
                 <p className="font-display text-xl font-semibold">
                   {project.title}
-                  {project.featured && <span className="ml-2" aria-label="Featured">⭐</span>}
+                  {project.featured && (
+                    <span className="ml-2 rounded-full bg-butter px-2 py-0.5 text-xs font-bold text-on-pastel">
+                      Featured
+                    </span>
+                  )}
                 </p>
                 <p className="text-sm text-muted">/projects/{project.slug}</p>
               </div>

@@ -10,7 +10,7 @@ export default async function AdminSkillsPage() {
 
   return (
     <div>
-      <h1 className="font-display text-3xl font-semibold">Skills 🧁</h1>
+      <h1 className="font-display text-3xl font-semibold">Skills</h1>
 
       <section className="mt-6 rounded-[2rem] bg-surface p-6 shadow-soft">
         <h2 className="font-display mb-4 text-xl font-semibold">Add a skill</h2>

@@ -5,12 +5,12 @@ const learning = ['NestJS', 'PostgreSQL', 'Docker', 'Testing'];
 export function About() {
   return (
     <section id="about" className="px-6 py-20">
-      <SectionHeading emoji="🌱" title="About me" />
+      <SectionHeading title="About me" />
 
       <div className="mx-auto grid max-w-4xl items-center gap-10 rounded-[2rem] bg-surface p-8 shadow-soft sm:grid-cols-[auto_1fr] sm:p-12">
         {/* Swap this for your photo later with next/image */}
-        <div className="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-lavender text-6xl">
-          🧑‍💻
+        <div className="font-display mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-lavender text-6xl font-semibold text-on-pastel">
+          P
         </div>
 
         <div className="space-y-4 text-lg leading-relaxed">

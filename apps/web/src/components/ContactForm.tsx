@@ -44,12 +44,11 @@ export function ContactForm() {
 
   return (
     <section id="contact" className="px-6 py-20">
-      <SectionHeading emoji="💌" title="Say hello" subtitle="Have a project or just want to chat? Send me a note!" />
+      <SectionHeading title="Say hello" subtitle="Have a project or just want to chat? Send me a note!" />
 
       <div className="mx-auto max-w-xl rounded-[2rem] bg-surface p-8 shadow-soft">
         {status === 'sent' ? (
           <div className="py-8 text-center">
-            <p className="text-5xl" aria-hidden>🎉</p>
             <p className="font-display mt-4 text-2xl font-semibold">Message sent!</p>
             <p className="mt-2 text-muted">Thanks for reaching out. I&apos;ll get back to you soon.</p>
             <button
@@ -102,7 +101,7 @@ export function ContactForm() {
               disabled={status === 'sending'}
               className="w-full rounded-full bg-accent py-3 font-bold text-on-pastel shadow-soft transition hover:-translate-y-0.5 disabled:opacity-60"
             >
-              {status === 'sending' ? 'Sending…' : 'Send message 💌'}
+              {status === 'sending' ? 'Sending…' : 'Send message'}
             </button>
           </form>
         )}

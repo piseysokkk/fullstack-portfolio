@@ -21,7 +21,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           <h3 className="font-display text-2xl font-semibold">{project.title}</h3>
           {project.featured && (
             <span className="shrink-0 rounded-full bg-butter px-3 py-1 text-xs font-bold text-on-pastel">
-              ⭐ Featured
+              Featured
             </span>
           )}
         </div>

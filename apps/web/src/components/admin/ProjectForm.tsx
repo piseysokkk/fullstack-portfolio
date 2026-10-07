@@ -162,7 +162,7 @@ export function ProjectForm({ action, project, submitLabel }: Props) {
             defaultChecked={project?.featured}
             className="h-5 w-5 accent-[var(--accent)]"
           />
-          ⭐ Featured
+          Featured
         </label>
       </div>
 
